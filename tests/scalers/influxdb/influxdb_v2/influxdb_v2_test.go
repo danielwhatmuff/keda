@@ -13,8 +13,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"k8s.io/client-go/kubernetes"
-
-	. "github.com/kedacore/keda/v2/tests/helper"
 )
 
 // Load environment variables from .env file
@@ -185,6 +183,32 @@ spec:
 )
 
 func TestInfluxScaler(t *testing.T) {
+	// setup
+	t.Log("--- setting up ---")
+	// Create kubernetes resources
+	kc := GetKubernetesClient(t)
+	data, templates := getTemplateData()
+	t.Cleanup(func() {
+		DeleteKubernetesResources(t, testNamespace, data, templates)
+	})
+
+	CreateKubernetesResources(t, kc, testNamespace, data, templates)
+
+	assert.True(t, WaitForStatefulsetReplicaReadyCount(t, kc, influxdbStatefulsetName, testNamespace, 1, 60, 1),
+		"replica count should be 0 after a minute")
+
+	// get token
+	updateDataWithInfluxAuth(t, kc, &data)
+
+	// test activation
+	testActivation(t, kc, data)
+	// test scaling
+	testScaleFloat(t, kc, data)
+
+	// cleanup
+}
+
+func TestInfluxScalerV3(t *testing.T) {
 	// setup
 	t.Log("--- setting up ---")
 	// Create kubernetes resources

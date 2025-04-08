@@ -26,6 +26,7 @@ require (
 	github.com/DataDog/datadog-api-client-go v1.16.0
 	github.com/Huawei/gophercloud v1.0.21
 	github.com/IBM/sarama v1.45.1
+	github.com/InfluxCommunity/influxdb3-go v0.14.0
 	github.com/arangodb/go-driver v1.6.6
 	github.com/aws/aws-msk-iam-sasl-signer-go v1.0.1
 	github.com/aws/aws-sdk-go-v2 v1.36.3
@@ -126,6 +127,15 @@ require (
 	sigs.k8s.io/controller-tools v0.16.5
 	sigs.k8s.io/custom-metrics-apiserver v1.30.1-0.20241105195130-84dc8cfe2555
 	sigs.k8s.io/kustomize/kustomize/v5 v5.6.0
+)
+
+require (
+	github.com/apache/arrow/go/v15 v15.0.2 // indirect
+	github.com/goccy/go-json v0.10.2 // indirect
+	github.com/google/flatbuffers v24.3.7+incompatible // indirect
+	github.com/influxdata/line-protocol/v2 v2.2.1 // indirect
+	github.com/klauspost/cpuid/v2 v2.2.7 // indirect
+	github.com/zeebo/xxh3 v1.0.2 // indirect
 )
 
 replace (
