@@ -1,7 +1,7 @@
 //go:build e2e
 // +build e2e
 
-package influxdb_test
+package influx_db_test
 
 import (
 	"bufio"
