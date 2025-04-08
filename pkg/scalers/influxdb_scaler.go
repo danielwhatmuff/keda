@@ -3,6 +3,7 @@ package scalers
 import (
 	"context"
 	"fmt"
+
 	"github.com/InfluxCommunity/influxdb3-go/influxdb3"
 	"github.com/go-logr/logr"
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
